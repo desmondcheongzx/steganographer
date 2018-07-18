@@ -1,0 +1,9 @@
+header {
+    margin-top: 6rem;
+    text-align: center;
+}
+
+.image {
+    width: 100%;
+    background: gray;
+}
