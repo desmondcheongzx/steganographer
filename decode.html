@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Decode &mdash; Steganography Demo</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="skeleton.css">
+    <link rel="stylesheet" href="custom.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Decode</h1>
+      </header>
+      <div class="upload">
+        <div class="row">
+          <div class="five columns">
+            <label for="url">Image URL</label>
+            <input class="u-full-width" name="url" placeholder="image url" />
+            <button name="getUrl" class="button-primary">Get Image</button>
+          </div>
+          <div class="one columns">
+            <span>OR</span>
+          </div>
+          <div class="six columns">
+            <label for="imageFile">Image File</label>
+            <input type="file" name="imageFile" /><br>
+            <button name="getFile">Upload Image</button>
+          </div>
+        </div>
+        <span name="uploadError" style="color: red;"></span>
+      </div>
+      <div class="input">
+        <canvas class="image"></canvas>
+      </div>
+      <h4>Decoding Parameters</h4>
+      Message hidden every <input type="number" name="spacing" value="100" min="1" style="width:80px;" /> pixels.
+      Using the <select name="colour">
+        <option value="r">R</option>
+        <option value="g">G</option>
+        <option value="B">B</option>
+      </select> value.
+      <button class="u-pull-right" name="decode" onClick="decodeImage()">Decode Image</button>
+      <br>
+      <div class="output">
+        <h4>Decoded Message</h4>
+        <textarea name="decodedOutput" class="u-full-width" rows="10" style="height:100%" readonly></textarea>
+      </div>
+    </div>
+    
+    <script src="decode.js"></script>
+
+  </body>
+</html>
