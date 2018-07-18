@@ -63,14 +63,20 @@ function uploadFile(e) {
     reader.readAsDataURL(file);
 }
 
-function uploadImageError() {
-    if (uploadErrors > 0)
-        uploadErrorMessage.innerHTML = `Error retrieving image. Please try another url or file. x${uploadErrors+1}`;
+function generateErrorMessage(location, number, message) {
+    if (number > 0)
+        location.innerHTML = `${message} x${number+1}`;
     else
-        uploadErrorMessage.innerHTML = 'Error retrieving image. Please try another url or file.';
+        location.innerHTML = message;
+    ++number;
+}
 
-    ++uploadErrors;
-    
+function uploadImageError() {
+    generateErrorMessage(uploadErrorMessage, uploadErrors++, 'Error retrieving image. Please try another url or file.'); 
+}
+
+function encodeImageError() {
+    generateErrorMessage(encodeErrorMessage, encodeErrors++, 'Error encoding. Message length exceeds size of image. Try decreasing the spacing or breaking the message into smaller parts.');
 }
 
 function encodeImage(e) {
@@ -99,12 +105,7 @@ function encodeImage(e) {
     }
 
     if (messagePos < message.length) {
-        if (encodeErrors > 0)
-            encodeErrorMessage.innerHTML = `Error encoding. Message length exceeds size of image. Try decreasing the spacing or breaking the message into smaller parts. x${encodeErrors+1}`;
-        else
-            encodeErrorMessage.innerHTML = `Error encoding. Message length exceeds size of image. Try decreasing the spacing or breaking the message into smaller parts.`;
-
-        ++encodeErrors;
+        encodeImageError();
     } else {
         encodeErrorMessage.innerHTML = '';
         encodeErrors = 0;
