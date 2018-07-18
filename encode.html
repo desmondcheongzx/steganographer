@@ -47,8 +47,11 @@
       <div class="u-full-width output">
         <canvas class="image"></canvas>
       </div>
-      <button>Copy Image Url</button>
-      <button>Download Image</button>
+      <div class="links">
+        <textarea name="outputUrl" class="u-full-width" style="resize: none;" readonly></textarea>
+        <button name="copy">Copy Image Url</button>
+        <a name="download" download="encodedImage"><button name="download">Download Image</button></a>
+      </div>
     </div>
     
     <script src="encode.js"></script>

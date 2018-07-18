@@ -22,6 +22,12 @@ const encodeButton = document.querySelector('button[name=encode]');
 let encodeErrors = 0;
 const encodeErrorMessage = document.querySelector('span[name=encodeError]');
 
+const links = document.querySelector('.links');
+const outputUrl = links.querySelector('textarea[name=outputUrl]');
+const downloadLink = links.querySelector('a[name=download]');
+const copyButton = links.querySelector('button[name=copy]');
+const downloadButton = links.querySelector('button[name=download]');
+
 function inputImage(imageSrc) {
     const image = new Image;
     image.crossOrigin = 'anonymous';
@@ -106,12 +112,27 @@ function encodeImage(e) {
 
     if (messagePos < message.length) {
         encodeImageError();
-    } else {
-        encodeErrorMessage.innerHTML = '';
-        encodeErrors = 0;
-    }    
+        return;
+    }
     
+    encodeErrorMessage.innerHTML = '';
+    encodeErrors = 0;
     outputContext.putImageData(pixels, 0, 0);
+    generateDownloadLinks();
+}
+
+function generateDownloadLinks() {
+    const url = outputCanvas.toDataURL('image/png');
+    downloadLink.href = url;
+    outputUrl.textContent = url;
+    copyButton.disabled = false;
+    copyButton.classList.add('button-primary');
+    downloadButton.classList.add('button-primary');
+}
+
+function copyLink() {
+    outputUrl.select();
+    document.execCommand('copy');
 }
 
 function checkUploadFunctionality() {
@@ -138,3 +159,6 @@ fileInput.addEventListener('change', (e) => {
 });
 
 checkUploadFunctionality();
+
+copyButton.addEventListener('click', copyLink);
+copyButton.disabled = true;
