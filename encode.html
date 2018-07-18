@@ -12,23 +12,24 @@
       <header>
         <h1>Encode</h1>
       </header>
+      <div class="upload">
+        <label for="url">Image URL</label>
+        <input class="u-full-width" name="url" placeholder="image url" />
+        <button class="button-primary">Get Image</button>
+        <span name="uploadError" style="color: red;"></span>
+      </div>
       <div class="input">
         <canvas class="image"></canvas>
       </div>
-      <div class="controls">
-        <label for="url">Image URL</label>
-        <input name="url" placeholder="image url" />
-        <button>Get Image</button>
-      </div>
       <label for="message">Secret Message</label>
       <textarea class="u-full-width" placeholder="Your secret message" id="message"></textarea>
-      Hide message every <input name="spacing" placeholder="100" size="2" /> pixels.
-      Using the <select>
+      Hide message every <input type="number" name="spacing" value="100" style="width:80px;" /> pixels.
+      Using the <select name="colour">
         <option value="r">R</option>
         <option value="g">G</option>
         <option value="B">B</option>
       </select> value.
-      <button class="u-pull-right" onClick="encodeImage()">Encode Image</button>
+      <button class="u-pull-right" name="encode" onClick="encodeImage()">Encode Image</button>
       <div class="u-full-width output">
         <canvas class="image"></canvas>
       </div>
