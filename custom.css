@@ -7,3 +7,7 @@ header {
     width: 100%;
     background: gray;
 }
+
+body {
+    margin-bottom: 10rem;
+}
