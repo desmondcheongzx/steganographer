@@ -21,6 +21,7 @@ const decodedOutput = document.querySelector('.output textarea');
 
 function inputImage(imageSrc) {
     const image = new Image;
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     if(imageSrc.startsWith("data:")) {
         image.src = imageSrc;
     } else {
