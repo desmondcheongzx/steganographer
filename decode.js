@@ -21,8 +21,12 @@ const decodedOutput = document.querySelector('.output textarea');
 
 function inputImage(imageSrc) {
     const image = new Image;
-    image.crossOrigin = 'anonymous';
-    image.src = imageSrc;
+    if(imageSrc.startsWith("data:")) {
+        image.src = imageSrc;
+    } else {
+        image.crossOrigin = 'anonymous';
+        image.src = proxyUrl+imageSrc;
+    }
     image.addEventListener('load', (e) => {
         width = image.width;
         height = image.height;

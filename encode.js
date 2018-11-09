@@ -31,8 +31,12 @@ const downloadButton = links.querySelector('button[name=download]');
 function inputImage(imageSrc) {
     const image = new Image;
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    image.crossOrigin = 'anonymous';
-    image.src = proxyUrl+imageSrc;
+    if(imageSrc.startsWith("data:")) {
+        image.src = imageSrc;
+    } else {
+        image.crossOrigin = 'anonymous';
+        image.src = proxyUrl+imageSrc;
+    }
     image.addEventListener('load', (e) => {
         width = image.width;
         height = image.height;
